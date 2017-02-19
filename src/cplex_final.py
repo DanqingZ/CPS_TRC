@@ -133,13 +133,13 @@ class cplex:
                 print((i+1)*300)
                 loc_X = self.X[i*300:(i+1)*300]
                 loc_Y = self.Y[i*300:(i+1)*300]
-                C,Z = run_cplex(loc_X,loc_Y)
+                C,Z = self.run_cplex(loc_X,loc_Y)
                 self.result.append([loc_X,loc_Y,C,Z])
             else:
                 print('............')
                 loc_X = self.X[i*300:len(X)]
                 loc_Y = self.Y[i*300:len(X)]
-                C,Z = run_cplex(loc_X,loc_Y)
+                C,Z = self.run_cplex(loc_X,loc_Y)
                 self.result.append([loc_X,loc_Y,C,Z])
 
 
@@ -161,8 +161,8 @@ class cplex:
             self.DF = pd.DataFrame({'X':self.X,'Y':self.Y,"C":C})
 
     def run(self):
-        run_parallel()
-        DF = create_DF()
+        self.run_parallel()
+        DF = self.create_DF()
         DF.to_csv(filename,index=False)
 
 
