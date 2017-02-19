@@ -25,7 +25,7 @@ class ERGM_CVX:
 		input[:,1] = distance
 		start = self.E[0].values.tolist()
 		end  = self.E[1].values.tolist()
-		names = V.values.tolist()
+		names = self.V.values.tolist()
 		start_int = np.zeros((len(start)))
 		end_int = np.zeros((len(start)))
 		for i in range(len(start)):
