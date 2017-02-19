@@ -118,19 +118,19 @@ class cplex_CPS:
         model.solve()  
         solution = model.solution
         C = solution.get_values()[0:300]
-        print(sum(C))
+        # print(sum(C))
         Z = solution.get_values()[300:90300]
-        print(sum(Z))
+        # print(sum(Z))
         Z = np.array(Z)
-        Z = np.reshape(Z, (300,300)) 
+        Z = np.reshape(Z, (300,300))
         return C,Z
 
     def run_parallel(self):
         for i in xrange(len(self.X)/300):
             if i< len(self.X)/300-1:
                 print('............')
-                print(i*300)
-                print((i+1)*300)
+                # print(i*300)
+                # print((i+1)*300)
                 loc_X = self.X[i*300:(i+1)*300]
                 loc_Y = self.Y[i*300:(i+1)*300]
                 C,Z = self.run_cplex(loc_X,loc_Y)
@@ -162,8 +162,8 @@ class cplex_CPS:
 
     def run(self):
         self.run_parallel()
-        DF = self.create_DF()
-        DF.to_csv(filename,index=False)
+        self.create_DF()
+        self.DF.to_csv(self.filepath +'/'+ self.filename,index=False)
 
 
 
