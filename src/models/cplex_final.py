@@ -18,7 +18,6 @@ from math import floor, fabs
 import sys
 import cplex
 from cplex.exceptions import CplexError
-# from inputdata import read_dat_file
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -29,10 +28,11 @@ import pandas as pd
 # result = []
 
 class cplex_CPS:
-    def __init__(self, X, Y,filename):
+    def __init__(self, X, Y,filepath,filename):
         self.X = X
         self.Y = Y
         self.result = []
+        self.filepath = filepath
         self.filename = filename
 
     def run_cplex(self,loc_X,loc_Y,m=30,M=50):
@@ -43,9 +43,9 @@ class cplex_CPS:
             for j in range(N):
                 c.append(np.sqrt((loc_X[i]-loc_X[j])**2+(loc_Y[i]-loc_Y[j])**2))
             C.append(c)
-        print('Number of clients')
+        print('Number of peole for assignment')
         print(len(loc_Y))
-        print('Number of facilities')
+        print('Number of potential social center')
         print(len(loc_X))
         num_facilities = len(loc_X)
         num_clients = len(loc_Y)
@@ -137,8 +137,8 @@ class cplex_CPS:
                 self.result.append([loc_X,loc_Y,C,Z])
             else:
                 print('............')
-                loc_X = self.X[i*300:len(X)]
-                loc_Y = self.Y[i*300:len(X)]
+                loc_X = self.X[i*300:len(self.X)]
+                loc_Y = self.Y[i*300:len(self.X)]
                 C,Z = self.run_cplex(loc_X,loc_Y)
                 self.result.append([loc_X,loc_Y,C,Z])
 
@@ -148,7 +148,7 @@ class cplex_CPS:
         total_commmunities = 0
         for i in xrange(len(self.X)/300):
             c = self.result[i][2]
-            z = rself.esult[i][3]
+            z = self.result[i][3]
             count = 0
             for j in range(len(c)):
                 if int(c[j]!=0):
