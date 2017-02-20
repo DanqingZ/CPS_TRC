@@ -14,6 +14,14 @@ Composition and socio-economic char- acteristics of the synthetic households are
 
 We utilized R bnlearn package for bayesian networks parts.Please check [bnlearn notebook](https://github.com/DanqingZ/CPS_TRC/blob/master/notebook/call_bnlearn.ipynb)
 
+### [Step 2] Community Allocation
+We implemented our algorithm using CPLEX Python API, please check the [source code packaged in Python class](https://github.com/DanqingZ/CPS_TRC/blob/master/src/models/cplex_final.py). We also implemented the parallel version using Python multiprocessing, please check the [source code packaged in Python class](https://github.com/DanqingZ/CPS_TRC/blob/master/src/models/cplex_MPI_final.py)
+
+We also provided the ipython notebooks as examples. Please check [non parallel version](https://github.com/DanqingZ/CPS_TRC/blob/master/notebook/call_cplex.ipynb) and [parallel version](https://github.com/DanqingZ/CPS_TRC/blob/master/notebook/call_cplex_parallel.ipynb)
+
+### [Step 3] ERGM learning and simulation
+We implemented the community-distance ERGM model using CVXPY, please check the [source code packaged in Python class](https://github.com/DanqingZ/CPS_TRC/blob/master/src/models/ERGM_CVX.py). We also provided the ipython notebook as examples. Please check [the example with synthetic data](https://github.com/DanqingZ/CPS_TRC/blob/master/notebook/call_ERGM_CVX.ipynb). Due to data privacy issues the data for the paper isn't relesed
+
 
 ## License
 
