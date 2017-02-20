@@ -126,11 +126,20 @@ class cplex_CPS:
 		Z = np.reshape(Z, (300,300))
 		return C,Z
 
-	def worker(self,loc_X,loc_Y,send_end):
+	def worker(self,loc_X,loc_Y,i,send_end):
 		'''worker function'''
 		C,Z = self.run_cplex(loc_X,loc_Y)
-		result = [C,Z,loc_X,loc_Y]
-		print('parallel')
+		count = 0
+		com = np.zeros(len(loc_X))
+		for j in range(len(C)):
+			if int(C[j]!=0):
+				c_index = count + 1
+				count +=1
+				for k in range(len(Z[:,j])):
+					if Z[k,j]!=0:
+						com[k] = int(c_index)
+		result = [com,i]
+		# print('parallel')
 		send_end.send(result)
 
 	def parallel(self):
@@ -140,39 +149,39 @@ class cplex_CPS:
 			recv_end, send_end = multiprocessing.Pipe(False)
 			loc_X = self.X[i*300:(i+1)*300]
 			loc_Y = self.Y[i*300:(i+1)*300]
-			p = multiprocessing.Process(target=self.worker, args=(loc_X,loc_Y, send_end))
+			p = multiprocessing.Process(target=self.worker, args=(loc_X,loc_Y, i,send_end))
 			jobs.append(p)
 			pipe_list.append(recv_end)
 			p.start()
 
-		print('check step 1')
+		# print('check step 1')
 		for proc in jobs:
 			proc.join()
-			print('done')
-		print('check step 2')
+			# print('done')
+		# print('check step 2')
 		result_list = [x.recv() for x in pipe_list]
-		print('check step 3')
+		# print('check step 3')
 		for result in result_list:
 			self.result.append(result)
-		print('check step 4')
+		# print('check step 4')
 	
 
 	def create_DF(self):
-		C = np.zeros(len(self.X))
 		total_commmunities = 0
+		communities = []
 		for i in xrange(len(self.X)/300):
-			c = self.result[i][2]
-			z = self.result[i][3]
-			count = 0
-			for j in range(len(c)):
-				if int(c[j]!=0):
-					c_index = total_commmunities + count + 1
-					count +=1
-					for k in range(len(z[:,j])):
-						if z[k,j]!=0:
-							C[300*i+k] = int(c_index)
-			total_commmunities += int(sum(c))
-			self.DF = pd.DataFrame({'X':self.X,'Y':self.Y,"C":C})
+			for j in xrange(len(self.X)/300):
+				if self.result[j][1] == i:
+					communities.append(self.result[j][0])
+		total = 0
+		self.C = []
+		for community in communities:
+			for j in range(len(community)):
+				self.C.append(community[j]+total)
+			total = total + max(community)
+		self.DF = pd.DataFrame({'X':self.X,'Y':self.Y,"C":self.C})
+
+
 
 
 	def run(self):

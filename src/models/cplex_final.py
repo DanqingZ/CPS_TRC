@@ -158,7 +158,7 @@ class cplex_CPS:
                         if z[k,j]!=0:
                             C[300*i+k] = int(c_index)
             total_commmunities += int(sum(c))
-            self.DF = pd.DataFrame({'X':self.X,'Y':self.Y,"C":C})
+        self.DF = pd.DataFrame({'X':self.X,'Y':self.Y,"C":C})
 
     def run(self):
         self.run_parallel()
