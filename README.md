@@ -11,6 +11,7 @@ This repository contains the source code described in "Connected Population Synt
 The connected population synthesis pipeline consists of three steps:
 ### [Step 1] Bayesian Networks learning and simulation
 Composition and socio-economic char- acteristics of the synthetic households are generated based on Bayesian network parameters estimated from a typical household survey data
+
 We utilized R bnlearn package for bayesian networks parts.Please check [bnlearn notebook](https://github.com/DanqingZ/CPS_TRC/blob/master/notebook/call_bnlearn.ipynb)
 
 
