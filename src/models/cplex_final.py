@@ -43,7 +43,7 @@ class cplex_CPS:
             for j in range(N):
                 c.append(np.sqrt((loc_X[i]-loc_X[j])**2+(loc_Y[i]-loc_Y[j])**2))
             C.append(c)
-        print('Number of peole for assignment')
+        print('Number of people for assignment')
         print(len(loc_Y))
         print('Number of potential social center')
         print(len(loc_X))
