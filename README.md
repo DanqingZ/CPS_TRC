@@ -1,16 +1,13 @@
 # CPS_TRC
-This repository contains the source code described in "Connected Population Synthesis for Urban Simulation"(Zhang D., Cao J., Tang D., Feygin S. and Pozdnoukhov A., Connected Population Synthesis for Urban Simulation. (in review), 2017)
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This repository contains the source code described in "Connected Population Synthesis for Urban Simulation"(Zhang D., Cao J., Feygin S., Tang D.and Pozdnoukhov A., Connected Population Synthesis for Urban Simulation. (in review), 2017)
 
 ### Prerequisites
 
 What things you need to install the software and how to install them
 
 ```
-Give examples
+cvxpy
+cplex python API
 ```
 
 ### Installing
