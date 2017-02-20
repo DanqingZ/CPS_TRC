@@ -5,10 +5,10 @@ This repository contains the source code described in "Connected Population Synt
 
 What things you need to install the software and how to install them
 
-```
-cvxpy
-cplex python API
-```
+* [cvxpy] (http://www.cvxpy.org/en/latest/install/) 
+* [cplex python API](http://www.ibm.com/support/knowledgecenter/SSSA5P_12.5.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/set_up/Python_setup.html)
+* [R bnlearn/hexbin packages](https://math.usask.ca/~longhai/software/installrpkg.html)
+
 
 ### Installing
 
