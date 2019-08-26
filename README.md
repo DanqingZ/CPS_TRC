@@ -1,5 +1,5 @@
 # CPS_TRC
-This repository contains the source code described in "Connected population synthesis for transportation simulation"(Zhang D., Cao J., Feygin S., Tang D.and Pozdnoukhov A., Connected population synthesis for transportation simulation. ([published in Transportation Research Part C: Emerging Technologies), 2019](https://www.sciencedirect.com/science/article/pii/S0968090X18318515)
+This repository contains the source code described in "Connected population synthesis for transportation simulation"(Zhang D., Cao J., Feygin S., Tang D.and Pozdnoukhov A., Connected population synthesis for transportation simulation. ([published in Transportation Research Part C: Emerging Technologies), 2019](https://www.sciencedirect.com/science/article/pii/S0968090X18318515))([pdf on ssrn](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3379496))
 
 ### Prerequisites
 
